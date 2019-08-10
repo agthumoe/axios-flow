@@ -60,6 +60,10 @@ const AxiosFlow = dispatch => {
       throw Error("Please provide a valid dispatch.");
     }
 
+    if (AxiosFlow.TOKEN_LABEL === null) {
+      AxiosFlow.TOKEN_LABEL = "achromex-auth-token";
+    }
+
     const that = this;
     that.config = {};
 
