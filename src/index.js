@@ -200,7 +200,7 @@ AxiosFlow.setTokenLabel = token => {
 
 AxiosFlow.setSuccessHandler = handler => {
   if (typeof handler === "function") {
-    AxiosFlow.successHandler = handler;
+    AxiosFlow.onSuccessHandler = handler;
   } else {
     throw new Error("successHandler must be a function");
   }
@@ -209,7 +209,7 @@ AxiosFlow.setSuccessHandler = handler => {
 
 AxiosFlow.setFailureHandler = handler => {
   if (typeof handler === "function") {
-    AxiosFlow.failureHandler = handler;
+    AxiosFlow.onErrorHandler = handler;
   } else {
     throw new Error("failureHandler must be a function");
   }
