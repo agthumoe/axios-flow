@@ -5,10 +5,10 @@ import axios from "axios";
 const pending = (type, meta) => ({
   type,
   payload: null,
-  meta: { isPending: true, ...meta }
+  meta: { isPending: true, ...meta },
 });
 
-const AxiosFlow = dispatch => {
+const AxiosFlow = (dispatch) => {
   const getTokenHeader = () => {
     const token = localStorage.getItem(AxiosFlow.TOKEN_LABEL)
       ? localStorage.getItem(AxiosFlow.TOKEN_LABEL)
@@ -29,7 +29,7 @@ const AxiosFlow = dispatch => {
       dispatch({
         type,
         payload: data,
-        meta: { headers, isPending: false, params, ...meta }
+        meta: { headers, isPending: false, params, ...meta },
       });
     }
 
@@ -69,44 +69,44 @@ const AxiosFlow = dispatch => {
 
     // that.instance = _dispatch => new Api(_dispatch);
 
-    Api.prototype.url = url => {
+    Api.prototype.url = (url) => {
       that.config.url = url;
       return that;
     };
 
-    Api.prototype.meta = meta => {
+    Api.prototype.meta = (meta) => {
       that.config.meta = meta;
       return that;
     };
 
-    Api.prototype.action = type => {
+    Api.prototype.action = (type) => {
       that.config.actionType = type;
       return that;
     };
 
-    Api.prototype.params = _params => {
+    Api.prototype.params = (_params) => {
       if (!isEmpty(_params)) {
         that.config.params = _params;
       }
       return that;
     };
 
-    Api.prototype.data = data => {
+    Api.prototype.data = (data) => {
       that.config.data = data;
       return that;
     };
 
-    Api.prototype.headers = headers => {
+    Api.prototype.headers = (headers) => {
       that.config.headers = headers;
       return that;
     };
 
-    Api.prototype.onSuccess = onSuccessCallback => {
+    Api.prototype.onSuccess = (onSuccessCallback) => {
       that.config.onSuccessCallback = onSuccessCallback;
       return that;
     };
 
-    Api.prototype.onError = onErrorCallback => {
+    Api.prototype.onError = (onErrorCallback) => {
       that.config.onErrorCallback = onErrorCallback;
       return that;
     };
@@ -116,7 +116,7 @@ const AxiosFlow = dispatch => {
       try {
         const response = await axios.post(that.config.url, that.config.data, {
           headers: { ...getTokenHeader(), ...that.config.headers },
-          params: that.config.params
+          params: that.config.params,
         });
         onSuccess(
           that.config.actionType,
@@ -137,7 +137,7 @@ const AxiosFlow = dispatch => {
       try {
         const response = await axios.get(that.config.url, {
           headers: { ...getTokenHeader(), ...that.config.headers },
-          params: that.config.params || null
+          params: that.config.params || null,
         });
         onSuccess(
           that.config.actionType,
@@ -156,7 +156,7 @@ const AxiosFlow = dispatch => {
       try {
         const response = await axios.put(that.config.url, that.config.data, {
           headers: { ...getTokenHeader(), ...that.config.headers },
-          params: that.config.params
+          params: that.config.params,
         });
         onSuccess(
           that.config.actionType,
@@ -175,7 +175,7 @@ const AxiosFlow = dispatch => {
       try {
         const response = await axios.delete(that.config.url, {
           headers: { ...getTokenHeader(), ...that.config.headers },
-          params: that.config.params || null
+          params: that.config.params || null,
         });
         onSuccess(
           that.config.actionType,
@@ -193,12 +193,12 @@ const AxiosFlow = dispatch => {
   return new Api();
 };
 
-AxiosFlow.setTokenLabel = token => {
+AxiosFlow.setTokenLabel = (token) => {
   AxiosFlow.TOKEN_LABEL = token;
   return AxiosFlow;
 };
 
-AxiosFlow.setSuccessHandler = handler => {
+AxiosFlow.setSuccessHandler = (handler) => {
   if (typeof handler === "function") {
     AxiosFlow.onSuccessHandler = handler;
   } else {
@@ -207,7 +207,7 @@ AxiosFlow.setSuccessHandler = handler => {
   return AxiosFlow;
 };
 
-AxiosFlow.setFailureHandler = handler => {
+AxiosFlow.setFailureHandler = (handler) => {
   if (typeof handler === "function") {
     AxiosFlow.onErrorHandler = handler;
   } else {
