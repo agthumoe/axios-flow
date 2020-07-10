@@ -176,6 +176,7 @@ const AxiosFlow = (dispatch) => {
         const response = await axios.delete(that.config.url, {
           headers: { ...getTokenHeader(), ...that.config.headers },
           params: that.config.params || null,
+          data: that.config.data,
         });
         onSuccess(
           that.config.actionType,
